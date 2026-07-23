@@ -1,0 +1,14 @@
+[package]
+name = "sqlcipher-exit-race"
+version = "0.1.0"
+edition = "2024"
+publish = false
+
+[dependencies]
+anyhow = "1"
+sqlx = { version = "0.9", features = ["sqlite", "runtime-tokio"] }
+# Not used directly: unifies with sqlx's libsqlite3-sys and swaps the bundled
+# plain SQLite for bundled SQLCipher (4.10.0 as of libsqlite3-sys 0.36).
+libsqlite3-sys = { version = "0.36", features = ["bundled-sqlcipher"] }
+tempfile = "3"
+tokio = { version = "1", features = ["rt-multi-thread", "macros"] }
